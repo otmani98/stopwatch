@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap"
+      rel="stylesheet"
+    />
+    <title>STOPWATCH</title>
+  </head>
+  <body>
+    <div class="container">
+      <fieldset>
+        <legend>Set Time to Stop it dynamically</legend>
+        <input type="number" maxlength="2" id="minutes" placeholder="M" />
+        <input type="number" maxlength="2" id="seconds" placeholder="S" />
+        <input type="number" maxlength="2" id="milli" placeholder="ml" />
+      </fieldset>
+      <fieldset>
+        <legend>Stopwatch</legend>
+        <span id="Sminutes">00</span>
+        <span id="Sseconds">00</span>
+        <span id="Smilli">00</span>
+        <div class="buttons">
+          <button>start</button>
+          <button>stop</button>
+        </div>
+      </fieldset>
+      <div class="shadow"></div>
+      <div class="popup">
+        <p>Counter has been stopped</p>
+        <span id="exit">x</span>
+      </div>
+    </div>
+    <script src="main.js"></script>
+  </body>
+</html>
