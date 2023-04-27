@@ -31,9 +31,12 @@ document.addEventListener("input", function (e) {
     }
   }
   if (e.target.id === "milli") {
-    if (e.target.value > 99) {
-      e.target.value = 99;
+    if (e.target.value > 98) {
+      e.target.value = 98;
     }
+  }
+  if (e.target.value.length > 2) {
+    e.target.value = `${+e.target.value}`;
   }
   if (e.target.id === "minutes") {
     set_minutes = e.target.value;
@@ -54,6 +57,21 @@ let sh = document.getElementById("Sminutes");
 
 function counter(x = 10.101010101) {
   limitedInterval = setInterval(function () {
+    //compare bettween set inputs and stopwatch values
+    if (
+      set_seconds !== undefined &&
+      set_seconds !== undefined &&
+      set_milli !== undefined
+    ) {
+      if (
+        +set_minutes === +sh.innerHTML &&
+        +set_seconds === +sm.innerHTML &&
+        +set_milli === +sp.innerHTML
+      ) {
+        popup();
+      }
+    }
+
     let s = parseInt(sp.innerHTML);
     let m = parseInt(sm.innerHTML);
     let h = parseInt(sh.innerHTML);
@@ -86,20 +104,6 @@ function counter(x = 10.101010101) {
       sp.innerHTML = "00";
       m++;
       sm.innerHTML = m;
-    }
-
-    if (
-      set_seconds !== undefined &&
-      set_seconds !== undefined &&
-      set_milli !== undefined
-    ) {
-      if (
-        +set_minutes === +sh.innerHTML &&
-        +set_seconds === +sm.innerHTML &&
-        +set_milli === +sp.innerHTML
-      ) {
-        popup();
-      }
     }
   }, x);
 }
@@ -135,6 +139,7 @@ let shadow = document.querySelector(".shadow");
 let popupe = document.querySelector(".popup");
 function popup() {
   button.click();
+  shadow.style.height = `${document.body.clientHeight + 100}px`;
   shadow.style.display = "block";
   popupe.style.display = "flex";
   let audio = new Audio("./voice.mp3");
@@ -153,12 +158,15 @@ document.addEventListener("click", function (e) {
 let clear = document.getElementById("clear");
 
 clear.onclick = function () {
+  minutes = "";
+  set_seconds = "";
+  set_milli = "";
   document.querySelectorAll("[type='number']").forEach((element) => {
     element.value = "";
   });
 };
 
-//record click
+//record click to add records
 let record = document.getElementById("record");
 
 record.onclick = function () {
