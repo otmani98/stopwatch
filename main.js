@@ -3,7 +3,7 @@ let set_seconds;
 let set_milli;
 
 //set max of seconds and milli and store the values of minutes & seconds & milli
-document.addEventListener("click", function (e) {
+document.addEventListener("input", function (e) {
   e.target.onmouseleave = function () {
     if (e.target.value === "") {
       e.target.value = "00";
@@ -22,9 +22,14 @@ document.addEventListener("click", function (e) {
       e.target.value = "0" + value;
     }
   };
-  if (e.target.id === "seconds" || e.target.id === "milli") {
+  if (e.target.id === "seconds") {
     if (e.target.value > 59) {
       e.target.value = 59;
+    }
+  }
+  if (e.target.id === "milli") {
+    if (e.target.value > 99) {
+      e.target.value = 99;
     }
   }
   if (e.target.id === "minutes") {
