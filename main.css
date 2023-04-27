@@ -100,7 +100,8 @@ span:not(span:last-of-type) {
   margin-right: 15px;
 }
 
-button {
+button,
+#record {
   display: inline-block;
   margin: 40px auto 11px;
   padding: 10px 20px;
@@ -110,6 +111,7 @@ button {
   border: none;
   border-radius: 15px;
   color: white;
+  cursor: pointer;
 }
 
 button:last-of-type:hover {
@@ -118,6 +120,11 @@ button:last-of-type:hover {
 
 button:hover {
   background-color: var(--main2-color);
+}
+
+#clear {
+  display: block;
+  margin-top: 15px;
 }
 
 .popup {
@@ -167,6 +174,10 @@ button:hover {
   cursor: pointer;
 }
 
+.records {
+  display: none;
+}
+
 @media (max-width: 769px) {
   span {
     font-size: 50px;
@@ -183,8 +194,33 @@ button:hover {
   .popup {
     width: 290px;
   }
-  fieldset:first-of-type legend {
+  fieldset:nth-of-type(2) legend {
     font-weight: 100;
     font-size: 22px;
   }
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+}
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  color: var(--main3-color);
+}
+th {
+  font-size: 30px;
+  color: #fff;
+  font-weight: bold;
+}
+td {
+  font-size: 30px;
+}
+tr:hover {
+  color: #fff;
+  background-color: #01110b;
 }
