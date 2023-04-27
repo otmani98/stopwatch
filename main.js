@@ -3,6 +3,7 @@ let set_seconds;
 let set_milli;
 let record_number = 0;
 let records = document.querySelector(".records");
+let tbody = document.querySelector("tbody");
 
 //set max of seconds and milli and store the values of minutes & seconds & milli
 document.addEventListener("input", function (e) {
@@ -120,17 +121,8 @@ button.onclick = function () {
 let stopButton = document.getElementsByTagName("button")[2];
 stopButton.onclick = function () {
   clearInterval(limitedInterval);
-  records.innerHTML = `<legend id="record">Record</legend>
-  <table>
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Time</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>`;
+  tbody.textContent = ``;
+  record_number = 0;
   records.style.display = "none";
   sp.innerHTML = "00";
   sm.innerHTML = "00";
@@ -168,7 +160,6 @@ clear.onclick = function () {
 
 //record click
 let record = document.getElementById("record");
-let tbody = document.querySelector("tbody");
 
 record.onclick = function () {
   let ml;
