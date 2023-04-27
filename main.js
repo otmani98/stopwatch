@@ -1,6 +1,8 @@
 let minutes;
 let set_seconds;
 let set_milli;
+let record_number = 0;
+let records = document.querySelector(".records");
 
 //set max of seconds and milli and store the values of minutes & seconds & milli
 document.addEventListener("input", function (e) {
@@ -86,19 +88,26 @@ function counter(x = 10.101010101) {
     }
 
     if (
-      +set_minutes === +sh.innerHTML &&
-      +set_seconds === +sm.innerHTML &&
-      +set_milli === +sp.innerHTML
+      set_seconds !== undefined &&
+      set_seconds !== undefined &&
+      set_milli !== undefined
     ) {
-      popup();
+      if (
+        +set_minutes === +sh.innerHTML &&
+        +set_seconds === +sm.innerHTML &&
+        +set_milli === +sp.innerHTML
+      ) {
+        popup();
+      }
     }
   }, x);
 }
 
 // to start and pause stopwatch
-let button = document.getElementsByTagName("button")[0];
+let button = document.getElementsByTagName("button")[1];
 button.onclick = function () {
   if (button.innerHTML === "start") {
+    records.style.display = "block";
     counter();
     button.innerHTML = "pause";
   } else {
@@ -108,9 +117,21 @@ button.onclick = function () {
 };
 
 // to stop stopwatch
-let stopButton = document.getElementsByTagName("button")[1];
+let stopButton = document.getElementsByTagName("button")[2];
 stopButton.onclick = function () {
   clearInterval(limitedInterval);
+  records.innerHTML = `<legend id="record">Record</legend>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>`;
+  records.style.display = "none";
   sp.innerHTML = "00";
   sm.innerHTML = "00";
   sh.innerHTML = "00";
@@ -135,3 +156,38 @@ document.addEventListener("click", function (e) {
     popupe.style.display = "none";
   }
 });
+
+//clear set
+let clear = document.getElementById("clear");
+
+clear.onclick = function () {
+  document.querySelectorAll("[type='number']").forEach((element) => {
+    element.value = "";
+  });
+};
+
+//record click
+let record = document.getElementById("record");
+let tbody = document.querySelector("tbody");
+
+record.onclick = function () {
+  let ml;
+  let sc;
+  let mi;
+  document.querySelectorAll("span").forEach((element) => {
+    if (element.id === "Smilli") {
+      ml = element.textContent;
+    }
+    if (element.id === "Sseconds") {
+      sc = element.textContent;
+    }
+    if (element.id === "Sminutes") {
+      mi = element.textContent;
+    }
+  });
+  record_number++;
+  tbody.innerHTML += `<tr>
+  <td>${record_number < 10 ? "0" + record_number : record_number}</td>
+  <td>${mi}:${sc}:${ml}</td>
+  </tr>`;
+};
