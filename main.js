@@ -1,4 +1,4 @@
-let minutes;
+let set_minutes;
 let set_seconds;
 let set_milli;
 let record_number = 0;
@@ -59,7 +59,7 @@ function counter(x = 10.101010101) {
   limitedInterval = setInterval(function () {
     //compare bettween set inputs and stopwatch values
     if (
-      set_seconds !== undefined &&
+      set_minutes !== undefined &&
       set_seconds !== undefined &&
       set_milli !== undefined
     ) {
@@ -158,7 +158,7 @@ document.addEventListener("click", function (e) {
 let clear = document.getElementById("clear");
 
 clear.onclick = function () {
-  minutes = "";
+  set_minutes = "";
   set_seconds = "";
   set_milli = "";
   document.querySelectorAll("[type='number']").forEach((element) => {
