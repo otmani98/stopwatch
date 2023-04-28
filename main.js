@@ -8,18 +8,12 @@ let tbody = document.querySelector("tbody");
 //set max of seconds and milli and store the values of minutes & seconds & milli
 document.addEventListener("input", function (e) {
   e.target.onmouseleave = function () {
-    if (e.target.value === "") {
-      e.target.value = "00";
-    }
     if (e.target.value < 10) {
       let value = parseInt(e.target.value);
       e.target.value = "0" + value;
     }
   };
   e.target.onblur = function () {
-    if (e.target.value === "") {
-      e.target.value = "00";
-    }
     if (e.target.value < 10) {
       let value = parseInt(e.target.value);
       e.target.value = "0" + value;
@@ -161,9 +155,9 @@ clear.onclick = function () {
   set_minutes = undefined;
   set_seconds = undefined;
   set_milli = undefined;
-  //document.querySelectorAll("[type='number']").forEach((element) => {
-  //  element.value = "";
-  //});
+  document.querySelectorAll("[type='number']").forEach((element) => {
+    element.value = "";
+  });
 };
 
 //record click to add records
