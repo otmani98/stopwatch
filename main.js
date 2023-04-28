@@ -4,8 +4,18 @@ let set_milli;
 let record_number = 0;
 let records = document.querySelector(".records");
 let tbody = document.querySelector("tbody");
+let limitedInterval;
+let sp = document.getElementById("Smilli");
+let sm = document.getElementById("Sseconds");
+let sh = document.getElementById("Sminutes");
+let button = document.getElementsByTagName("button")[1];
+let stopButton = document.getElementsByTagName("button")[2];
+let shadow = document.querySelector(".shadow");
+let popupe = document.querySelector(".popup");
+let clear = document.getElementById("clear");
+let record = document.getElementById("record");
 
-//set max of seconds and milli and store the values of minutes & seconds & milli
+//set max of seconds & milliseconds & minutes then store these values in variables
 document.addEventListener("input", function (e) {
   e.target.onmouseleave = function () {
     if (e.target.value < 10) {
@@ -43,14 +53,27 @@ document.addEventListener("input", function (e) {
   }
 });
 
+//
 //this part for stopwatch (counter) logic
-let limitedInterval;
-let sp = document.getElementById("Smilli");
-let sm = document.getElementById("Sseconds");
-let sh = document.getElementById("Sminutes");
-
 function counter(x = 10.101010101) {
   limitedInterval = setInterval(function () {
+    let s = parseInt(sp.innerHTML);
+    let m = parseInt(sm.innerHTML);
+    let h = parseInt(sh.innerHTML);
+
+    s++;
+    sp.innerHTML = s;
+
+    if (sp.innerHTML < 10) {
+      sp.innerHTML = "0" + s;
+    }
+    if (sm.innerHTML < 10) {
+      sm.innerHTML = "0" + m;
+    }
+    if (sh.innerHTML < 10) {
+      sh.innerHTML = "0" + h;
+    }
+
     //compare bettween set inputs and stopwatch values
     if (
       set_minutes !== undefined &&
@@ -64,27 +87,6 @@ function counter(x = 10.101010101) {
       ) {
         popup();
       }
-    }
-
-    let s = parseInt(sp.innerHTML);
-    let m = parseInt(sm.innerHTML);
-    let h = parseInt(sh.innerHTML);
-
-    s++;
-    sp.innerHTML = s;
-
-    if (sh === "99") {
-      clearInterval(limitedInterval);
-    }
-
-    if (sp.innerHTML < 10) {
-      sp.innerHTML = "0" + s;
-    }
-    if (sm.innerHTML < 10) {
-      sm.innerHTML = "0" + m;
-    }
-    if (sh.innerHTML < 10) {
-      sh.innerHTML = "0" + h;
     }
 
     if (sm.innerHTML === "59" && sp.innerHTML === "99") {
@@ -103,7 +105,6 @@ function counter(x = 10.101010101) {
 }
 
 // to start and pause stopwatch
-let button = document.getElementsByTagName("button")[1];
 button.onclick = function () {
   if (button.innerHTML === "start") {
     records.style.display = "block";
@@ -116,7 +117,6 @@ button.onclick = function () {
 };
 
 // to stop stopwatch
-let stopButton = document.getElementsByTagName("button")[2];
 stopButton.onclick = function () {
   clearInterval(limitedInterval);
   tbody.textContent = ``;
@@ -129,8 +129,6 @@ stopButton.onclick = function () {
 };
 
 //show popup
-let shadow = document.querySelector(".shadow");
-let popupe = document.querySelector(".popup");
 function popup() {
   button.click();
   shadow.style.height = `${document.body.clientHeight + 100}px`;
@@ -149,8 +147,6 @@ document.addEventListener("click", function (e) {
 });
 
 //clear set
-let clear = document.getElementById("clear");
-
 clear.onclick = function () {
   set_minutes = undefined;
   set_seconds = undefined;
@@ -161,8 +157,6 @@ clear.onclick = function () {
 };
 
 //record click to add records
-let record = document.getElementById("record");
-
 record.onclick = function () {
   let ml;
   let sc;
