@@ -158,9 +158,9 @@ document.addEventListener("click", function (e) {
 let clear = document.getElementById("clear");
 
 clear.onclick = function () {
-  set_minutes = "";
-  set_seconds = "";
-  set_milli = "";
+  set_minutes = undefined;
+  set_seconds = undefined;
+  set_milli = undefined;
   document.querySelectorAll("[type='number']").forEach((element) => {
     element.value = "";
   });
