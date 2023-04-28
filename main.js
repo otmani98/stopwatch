@@ -161,9 +161,9 @@ clear.onclick = function () {
   set_minutes = undefined;
   set_seconds = undefined;
   set_milli = undefined;
-  document.querySelectorAll("[type='number']").forEach((element) => {
-    element.value = "";
-  });
+  //document.querySelectorAll("[type='number']").forEach((element) => {
+  //  element.value = "";
+  //});
 };
 
 //record click to add records
